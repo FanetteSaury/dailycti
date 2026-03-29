@@ -2,6 +2,10 @@
 
 **Know what happened in cyber last night. 2 minutes. Every morning.**
 
+<p align="center">
+  <img src="src/images/notebooklm_presentation_cute.png" alt="DailyCTI -- Cyber Intel by Morning Coffee" width="700">
+</p>
+
 ---
 
 ## The Problem
