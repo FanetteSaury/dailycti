@@ -1,0 +1,22 @@
+version: 2
+
+secret:
+  show_secrets: false
+
+  ignored_paths:
+    - ".venv/**"
+    - "**/__pycache__/**"
+    - "*.pyc"
+    - "node_modules/**"
+    - "demo/newsletter_output.*"
+    - "demo/articles.json"
+
+  ignored_matches:
+    - match: "sk-ant-..."
+      name: "README placeholder API key"
+    - match: "change-this-to-a-random-secret"
+      name: "Example JWT secret placeholder"
+    - match: "CHANGE_ME"
+      name: "Placeholder requiring user replacement"
+    - match: "dailycti_dev"
+      name: "Default dev-only DB password (placeholder, not a real credential)"

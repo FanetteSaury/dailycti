@@ -1,0 +1,148 @@
+# =============================================================================
+# DailyCTI -- Priority Scoring Configuration
+# =============================================================================
+# Defines the weighted scoring algorithm used by DailyCTI AI to prioritize
+# articles for the newsletter, inspired by commercial CTI platform scoring.
+#
+# Formula:
+#   priority = Σ(factor_weight × factor_score)
+#   where each factor_score is normalized to [0.0, 1.0]
+# =============================================================================
+
+# --- Scoring Weights ---
+# Must sum to 1.0
+weights:
+  source_authority: 0.20     # How reliable/authoritative is the source?
+  cvss_score: 0.25           # CVSS base score (if CVEs present)
+  exploit_availability: 0.20 # Is there a known exploit / in-the-wild exploitation?
+  mention_velocity: 0.15     # How many distinct sources cover this story in 24h?
+  recency: 0.10              # How recent is the article?
+  product_prevalence: 0.10   # How widely deployed is the affected product?
+
+# --- Source Authority Scores ---
+# Maps source tier to authority score [0.0, 1.0]
+source_authority:
+  tier_1: 1.0    # CISA, NVD, vendor advisories, top security news
+  tier_2: 0.7    # Major vendor research blogs, secondary news
+  tier_3: 0.4    # Community, supplementary sources
+
+  # Override scores for specific sources (by source name from sources.yaml)
+  overrides:
+    "CISA KEV Catalog": 1.0
+    "CISA Cybersecurity Advisories": 1.0
+    "NVD API": 1.0
+    "Microsoft MSRC": 0.95
+    "Google Project Zero": 0.95
+    "Krebs on Security": 0.90
+    "Mandiant Blog": 0.90
+    "Cisco Talos Blog": 0.85
+
+# --- CVSS Score Mapping ---
+# Normalized: cvss_score / 10.0
+# Articles without CVEs get a default score
+cvss:
+  default_no_cve: 0.3        # Default score when no CVE is present
+  critical_threshold: 9.0     # CVSS >= this → always included in Critical Vulns section
+  high_threshold: 7.0
+  medium_threshold: 4.0
+
+# --- Exploit Availability ---
+# Binary factors that boost the score
+exploit_availability:
+  cisa_kev_listed: 1.0       # Listed in CISA Known Exploited Vulnerabilities
+  exploit_db_available: 0.8   # Public exploit on Exploit-DB
+  poc_on_github: 0.7          # Proof-of-concept on GitHub
+  vendor_confirmed_exploited: 0.9  # Vendor confirms in-the-wild exploitation
+  no_known_exploit: 0.0       # No known exploit
+
+# --- Mention Velocity ---
+# Number of distinct sources covering the same story cluster in 24 hours
+# Normalized using a logarithmic scale
+mention_velocity:
+  min_sources_for_trend: 3    # Minimum sources to consider it trending
+  normalization: "log"        # log | linear
+  max_sources_cap: 20         # Cap for normalization (log(20) = ~3.0 → 1.0)
+
+# --- Recency Decay ---
+# Exponential decay based on article age
+recency:
+  half_life_hours: 12         # Score halves every 12 hours
+  max_age_hours: 72           # Articles older than this get score 0.0
+
+# --- Product Prevalence ---
+# How widely deployed is the affected product?
+product_prevalence:
+  # High prevalence products (score: 0.8-1.0)
+  high:
+    - "Microsoft Windows"
+    - "Microsoft Office"
+    - "Microsoft Exchange"
+    - "Google Chrome"
+    - "Apple iOS"
+    - "Apple macOS"
+    - "Android"
+    - "Linux Kernel"
+    - "Apache"
+    - "nginx"
+    - "OpenSSL"
+    - "VMware"
+    - "Cisco IOS"
+    - "Fortinet FortiOS"
+    - "Palo Alto PAN-OS"
+
+  # Medium prevalence (score: 0.4-0.7)
+  medium:
+    - "Adobe Acrobat"
+    - "Atlassian Confluence"
+    - "Atlassian Jira"
+    - "SAP"
+    - "Oracle"
+    - "Citrix"
+    - "Ivanti"
+    - "SonicWall"
+    - "Zimbra"
+    - "WordPress"
+    - "Drupal"
+
+  # Default for unknown products
+  default_score: 0.3
+
+# --- Audience-Specific Overrides ---
+# Different weight profiles for different newsletter tiers
+audience_profiles:
+  executive:
+    # CISOs care more about impact and less about technical details
+    weights:
+      source_authority: 0.15
+      cvss_score: 0.20
+      exploit_availability: 0.25
+      mention_velocity: 0.25  # High media coverage = board-level concern
+      recency: 0.10
+      product_prevalence: 0.05
+
+  technical:
+    # Analysts want detailed, actionable intelligence
+    weights:
+      source_authority: 0.20
+      cvss_score: 0.25
+      exploit_availability: 0.20
+      mention_velocity: 0.10
+      recency: 0.10
+      product_prevalence: 0.15
+
+  ioc_feed:
+    # SOC teams want IOC-rich content
+    weights:
+      source_authority: 0.15
+      cvss_score: 0.15
+      exploit_availability: 0.30
+      mention_velocity: 0.10
+      recency: 0.20
+      product_prevalence: 0.10
+
+# --- Thresholds ---
+# Minimum score to include in newsletter
+thresholds:
+  include_in_newsletter: 0.35    # Below this → not included
+  executive_tldr: 0.75           # Above this → included in Executive TL;DR
+  critical_alert: 0.90           # Above this → also pushed to Slack

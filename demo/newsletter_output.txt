@@ -1,0 +1,223 @@
+============================================================
+DAILYCTI BRIEF -- March 29, 2026
+============================================================
+
+EXECUTIVE TL;DR
+----------------------------------------
+  * Citrix NetScaler Under Active Recon for CVE-2026-3055 (CVSS 9.3) Memory Overread Bug (CVE-2026-3055)
+    A recently disclosed critical security flaw impacting Citrix NetScaler ADC and NetScaler Gateway is witnessing active reconnaissance activity, accordi
+    [The Hacker News] https://thehackernews.com/2026/03/citrix-netscaler-under-active-recon-for.html
+
+  * CISA Adds CVE-2025-53521 to KEV After Active F5 BIG-IP APM Exploitation (CVE-2025-53521)
+    The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added a critical security flaw impacting F5 BIG-IP Access Policy Manager (A
+    [The Hacker News] https://thehackernews.com/2026/03/cisa-adds-cve-2025-53521-to-kev-after.html
+
+  * CISA Adds One Known Exploited Vulnerability to Catalog (CVE-2025-53521)
+    CISA has added one new vulnerability to its Known Exploited Vulnerabilities (KEV) Catalog, based on evidence of active exploitation. CVE-2025-53521 F5
+    [CISA Advisories] https://www.cisa.gov/news-events/alerts/2026/03/27/cisa-adds-one-known-exploited-vulnerability-catalog
+
+  * PTC Windchill Product Lifecycle Management (CVE-2026-4681)
+    View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to achieve remote code execution. The following versions of PT
+    [CISA Advisories] https://www.cisa.gov/news-events/ics-advisories/icsa-26-085-03
+
+  * New Infinity Stealer malware grabs macOS data via ClickFix lures
+    A new info-stealing malware named Infinity Stealer is targeting macOS systems with a Python payload packaged as an executable using the open-source Nu
+    [BleepingComputer] https://www.bleepingcomputer.com/news/security/new-infinity-stealer-malware-grabs-macos-data-via-clickfix-lures/
+
+
+CRITICAL VULNERABILITIES (8 items)
+----------------------------------------
+  [CRITICAL] Citrix NetScaler Under Active Recon for CVE-2026-3055 (CVSS 9.3) Memory Overread Bug (CVE-2026-3055)
+    A recently disclosed critical security flaw impacting Citrix NetScaler ADC and NetScaler Gateway is witnessing active reconnaissance activity, according to Defused Cyber and watchTowr. The vulnerabili
+    Source: The Hacker News | Mar 28, 2026
+    https://thehackernews.com/2026/03/citrix-netscaler-under-active-recon-for.html
+
+  [CRITICAL] CISA Adds CVE-2025-53521 to KEV After Active F5 BIG-IP APM Exploitation (CVE-2025-53521)
+    The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added a critical security flaw impacting F5 BIG-IP Access Policy Manager (APM) to its Known Exploited Vulnerabilities (KEV) c
+    Source: The Hacker News | Mar 28, 2026
+    https://thehackernews.com/2026/03/cisa-adds-cve-2025-53521-to-kev-after.html
+
+  [CRITICAL] CISA Adds One Known Exploited Vulnerability to Catalog (CVE-2025-53521)
+    CISA has added one new vulnerability to its Known Exploited Vulnerabilities (KEV) Catalog, based on evidence of active exploitation. CVE-2025-53521 F5 BIG-IP Remote Code Execution Vulnerability This t
+    Source: CISA Advisories | Mar 27, 2026
+    https://www.cisa.gov/news-events/alerts/2026/03/27/cisa-adds-one-known-exploited-vulnerability-catalog
+
+  [CRITICAL] PTC Windchill Product Lifecycle Management (CVE-2026-4681)
+    View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to achieve remote code execution. The following versions of PTC Windchill Product Lifecycle Management are affec
+    Source: CISA Advisories | Mar 26, 2026
+    https://www.cisa.gov/news-events/ics-advisories/icsa-26-085-03
+
+  [CRITICAL] Microsoft Patch Tuesday, March 2026 Edition
+    Microsoft Corp. today pushed security updates to fix at least 77 vulnerabilities in its Windows operating systems and other software. There are no pressing "zero-day" flaws this month (compared to Feb
+    Source: Krebs on Security | Mar 11, 2026
+    https://krebsonsecurity.com/2026/03/microsoft-patch-tuesday-march-2026-edition/
+
+  [HIGH] TA446 Deploys DarkSword iOS Exploit Kit in Targeted Spear-Phishing Campaign
+    Proofpoint has disclosed details of a targeted email campaign in which threat actors with ties to Russia are leveraging the recently disclosed DarkSword exploit kit to target iOS devices. The activity
+    Source: The Hacker News | Mar 28, 2026
+    https://thehackernews.com/2026/03/ta446-deploys-leaked-darksword-ios.html
+
+  [CRITICAL] European Parliament rejects extension of CSAM scanning rules for tech platforms
+    The 311 members of Parliament who voted against an extension did so despite strong support from law enforcement, children’s rights groups, German Chancellor Friedrich Merz, several European commission
+    Source: The Record | Mar 27, 2026
+    https://therecord.media/eu-parliament-rejects-csam-scanning-extension
+
+  [CRITICAL] Dutch court threatens xAI with fines over Grok's nonconsensual nude images
+    Grok — which is owned by Elon Musk’s xAI — will be forced to pay damages of €100,000 ($115,000) a day if it does not comply, according to the ruling.
+    Source: The Record | Mar 27, 2026
+    https://therecord.media/dutch-court-threatens-xai-with-fines-grok-nudification
+
+
+THREAT ACTOR SPOTLIGHT (2 items)
+----------------------------------------
+  [MEDIUM] Latvia accuses Russia of of disinformation campaign targeting Baltic states
+    Russian media outlets and Telegram channels have circulated allegations that the Baltic states opened their airspace to Ukrainian drones targeting Russian territory — a claim Riga strongly denied.
+    Source: The Record | Mar 27, 2026
+    https://therecord.media/latvia-accuses-russia-of-disinformation-campaign-ukraine-war
+
+  [MEDIUM] Threat Brief: Recruiting Scheme Impersonating Palo Alto Networks Talent Acquisition Team
+    Unit 42 identifies a recruitment phishing campaign targeting senior professionals via impersonation and fraudulent resume fees. The post Threat Brief: Recruiting Scheme Impersonating Palo Alto Network
+    Source: Unit 42 (Palo Alto) | Mar 24, 2026
+    https://unit42.paloaltonetworks.com/phishing-attackers-pose-as-panw-recruiters/
+
+
+DATA BREACHES & INCIDENTS (6 items)
+----------------------------------------
+  [HIGH] Feds Disrupt IoT Botnets Behind Huge DDoS Attacks
+    The U.S. Justice Department joined authorities in Canada and Germany in dismantling the online infrastructure behind four highly disruptive botnets that compromised more than three million hacked Inte
+    Source: Krebs on Security | Mar 20, 2026
+    https://krebsonsecurity.com/2026/03/feds-disrupt-iot-botnets-behind-huge-ddos-attacks/
+
+  [MEDIUM] Iran-Linked Hackers Breach FBI Director’s Personal Email, Hit Stryker With Wiper Attack
+    Threat actors with ties to Iran successfully broke into the personal email account of Kash Patel, the director of the U.S. Federal Bureau of Investigation (FBI), and leaked a cache of photos and other
+    Source: The Hacker News | Mar 28, 2026
+    https://thehackernews.com/2026/03/iran-linked-hackers-breach-fbi.html
+
+  [MEDIUM] ‘CanisterWorm’ Springs Wiper Attack Targeting Iran
+    A financially motivated data theft and extortion group is attempting to inject itself into the Iran war, unleashing a worm that spreads through poorly secured cloud services and wipes data on infected
+    Source: Krebs on Security | Mar 23, 2026
+    https://krebsonsecurity.com/2026/03/canisterworm-springs-wiper-attack-targeting-iran/
+
+  [MEDIUM] Pro-Iranian Hacking Group Claims Credit for Hack of FBI Director Kash Patel’s Personal Account
+    The group that it was making available for download emails and other documents from Patel’s account. The post Pro-Iranian Hacking Group Claims Credit for Hack of FBI Director Kash Patel’s Personal Acc
+    Source: SecurityWeek | Mar 27, 2026
+    https://www.securityweek.com/pro-iranian-hacking-group-claims-credit-for-hack-of-fbi-director-kash-patels-personal-account/
+
+  [MEDIUM] In Other News: Palo Alto Recruiter Scam, Anti-Deepfake Chip, Google Sets 2029 Quantum Deadline
+    Other noteworthy stories that might have slipped under the radar: Heritage Bank data breach, new State Department unit tackles cyber threats, LA Metro disruptions. The post In Other News: Palo Alto Re
+    Source: SecurityWeek | Mar 27, 2026
+    https://www.securityweek.com/in-other-news-palo-alto-recruiter-scam-anti-deepfake-chip-google-sets-2029-quantum-deadline/
+
+  [MEDIUM] Threat Brief: March 2026 Escalation of Cyber Risk Related to Iran (Updated March 26)
+    Unit 42 details recent Iranian cyberattack activity, sharing direct observations of phishing, hacktivist activity and cybercrime. We include recommendations for defenders. The post Threat Brief: March
+    Source: Unit 42 (Palo Alto) | Mar 26, 2026
+    https://unit42.paloaltonetworks.com/iranian-cyberattacks-2026/
+
+
+MALWARE & TOOLING (8 items)
+----------------------------------------
+  [CRITICAL] New Infinity Stealer malware grabs macOS data via ClickFix lures
+    A new info-stealing malware named Infinity Stealer is targeting macOS systems with a Python payload packaged as an executable using the open-source Nuitka compiler. [...]
+    Source: BleepingComputer | Mar 28, 2026
+    https://www.bleepingcomputer.com/news/security/new-infinity-stealer-malware-grabs-macos-data-via-clickfix-lures/
+
+  [CRITICAL] Infrastructure Attacks With Physical Consequences Down 25%
+    Operational technology (OT) at industrial and critical infrastructure sites seem to have been benefitting from a lull in ransomware, and hackers' relative ignorance of OT systems.
+    Source: Dark Reading | Mar 27, 2026
+    https://www.darkreading.com/threat-intelligence/infrastructure-attacks-physical-consequences-down
+
+  [MEDIUM] Backdoored Telnyx PyPI package pushes malware hidden in WAV audio
+    TeamPCP hackers compromised the Telnyx package on the Python Package Index today, uploading malicious versions that deliver credential-stealing malware hidden inside a WAV file. [...]
+    Source: BleepingComputer | Mar 27, 2026
+    https://www.bleepingcomputer.com/news/security/backdoored-telnyx-pypi-package-pushes-malware-hidden-in-wav-audio/
+
+  [MEDIUM] Fake VS Code alerts on GitHub spread malware to developers
+    A large-scale campaign is targeting developers on GitHub with fake Visual Studio Code (VS Code) security alerts posted in the Discussions section of various projects, to trick users into downloading m
+    Source: BleepingComputer | Mar 27, 2026
+    https://www.bleepingcomputer.com/news/security/fake-vs-code-alerts-on-github-spread-malware-to-developers/
+
+  [MEDIUM] Cloudflare-Themed ClickFix Attack Drops Infiniti Stealer on Macs
+    The infection chain includes a fake CAPTCHA page, a Bash script, a Nuitka loader, and the Python-based infostealer. The post Cloudflare-Themed ClickFix Attack Drops Infiniti Stealer on Macs appeared f
+    Source: SecurityWeek | Mar 28, 2026
+    https://www.securityweek.com/cloudflare-themed-clickfix-attack-drops-infiniti-stealer-on-macs/
+
+  [MEDIUM] China Upgrades the Backdoor It Uses to Spy on Telcos Globally
+    Chinese APT Red Menshen's super-advanced BPFdoor malware defeats traditional cybersecurity protections. All telcos can do, really, is try hunting it down.
+    Source: Dark Reading | Mar 27, 2026
+    https://www.darkreading.com/threat-intelligence/china-upgrades-backdoor-spy-telcos
+
+  [MEDIUM] Converging Interests: Analysis of Threat Clusters Targeting a Southeast Asian Government
+    Unit 42 uncovers multiple clusters of cyberespionage targeting a Southeast Asian government organization with USBFect, RATs and loaders. The post Converging Interests: Analysis of Threat Clusters Targ
+    Source: Unit 42 (Palo Alto) | Mar 26, 2026
+    https://unit42.paloaltonetworks.com/espionage-campaigns-target-se-asian-government-org/
+
+  [MEDIUM] Beers with Talos breaks down the 2025 Talos Year in Review
+    The Beers with Talos team unpack the biggest cybersecurity threats of 2025, from React2Shell to ransomware and identity abuse, and what it all means for defenders going forward.
+    Source: Cisco Talos | Mar 23, 2026
+    https://blog.talosintelligence.com/beers-with-talos-breaks-down-the-2025-talos-year-in-review/
+
+
+POLICY, COMPLIANCE & REGULATION (1 items)
+----------------------------------------
+  [MEDIUM] FBI confirms theft of director’s personal emails by Iran-linked hacking group
+    An FBI spokesperson told Recorded Future News that the information is “historical in nature and involves no government information,” adding that the agency has “taken all necessary steps to mitigate p
+    Source: The Record | Mar 27, 2026
+    https://therecord.media/fbi-confirms-theft-of-directors-personal-emails-iran-group
+
+
+GENERAL SECURITY NEWS (10 items)
+----------------------------------------
+  [MEDIUM] CISA Adds One Known Exploited Vulnerability to Catalog (CVE-2026-33634)
+    CISA has added one new vulnerability to its Known Exploited Vulnerabilities (KEV) Catalog, based on evidence of active exploitation. CVE-2026-33634 Aqua Security Trivy Embedded Malicious Code Vulnerab
+    Source: CISA Advisories | Mar 26, 2026
+    https://www.cisa.gov/news-events/alerts/2026/03/26/cisa-adds-one-known-exploited-vulnerability-catalog
+
+  [LOW] File read flaw in Smart Slider plugin impacts 500K WordPress sites
+    A vulnerability in the Smart Slider 3 WordPress plugin, active on more than 800,000 websites, can be exploited to allow subscriber-level users access to arbitrary files on the server. [...]
+    Source: BleepingComputer | Mar 29, 2026
+    https://www.bleepingcomputer.com/news/security/file-read-flaw-in-smart-slider-plugin-impacts-500k-wordpress-sites/
+
+  [MEDIUM] Apple Sends Lock Screen Alerts to Outdated iPhones Over Active Web-Based Exploits
+    Apple is now sending Lock Screen notifications to iPhones and iPads running older versions of iOS and iPadOS to alert users of web-based attacks and urge them to install the update. The development wa
+    Source: The Hacker News | Mar 27, 2026
+    https://thehackernews.com/2026/03/apple-sends-lock-screen-alerts-to.html
+
+  [HIGH] Wartime Usage of Compromised IP Cameras Highlight Their Danger
+    The list of countries exploiting Internet-connected cameras to give them eyes inside their adversaries' borders continues to expand. What should companies look out for?
+    Source: Dark Reading | Mar 27, 2026
+    https://www.darkreading.com/cyber-risk/wartime-usage-of-compromised-ip-cameras-highlight-their-danger
+
+  [HIGH] TP-Link Patches High-Severity Router Vulnerabilities
+    The security defects could be used to bypass authentication, execute arbitrary commands, and decrypt configuration files. The post TP-Link Patches High-Severity Router Vulnerabilities appeared first o
+    Source: SecurityWeek | Mar 27, 2026
+    https://www.securityweek.com/tp-link-patches-high-severity-router-vulnerabilities/
+
+  [MEDIUM] Detection Engine Updates Version 2.159
+    Added 19 new detectors and checkers including Azure, DeepL, Oracle, SAP, and Polar tokens, 4 new analyzers, and improved detection precision and checker reliability across multiple existing secrets.
+    Source: GitGuardian Detection Engine | Mar 20, 2026
+    https://docs.gitguardian.com/releases/detection-engine/2026/03/20/changelog
+
+  [MEDIUM] Iran-Backed Hackers Claim Wiper Attack on Medtech Firm Stryker
+    A hacktivist group with links to Iran's intelligence agencies is claiming responsibility for a data-wiping attack against Stryker, a global medical technology company based in Michigan. News reports o
+    Source: Krebs on Security | Mar 11, 2026
+    https://krebsonsecurity.com/2026/03/iran-backed-hackers-claim-wiper-attack-on-medtech-firm-stryker/
+
+  [MEDIUM] How AI Assistants are Moving the Security Goalposts
+    AI-based assistants or "agents" -- autonomous programs that have access to the user's computer, files, online services and can automate virtually any task -- are growing in popularity with developers 
+    Source: Krebs on Security | Mar 08, 2026
+    https://krebsonsecurity.com/2026/03/how-ai-assistants-are-moving-the-security-goalposts/
+
+  [MEDIUM] Detection Engine Updates Version 2.158
+    New detectors for MiniMax, Retell, and Azure Storage Account Key, plus a 12% scanning speed improvement and fixes for MongoDB and Azure Container Registry detection.
+    Source: GitGuardian Detection Engine | Mar 03, 2026
+    https://docs.gitguardian.com/releases/detection-engine/2026/03/03/changelog
+
+  [MEDIUM] Detection Engine Updates Version 2.157
+    A major expansion with 20+ new detectors covering Azure services, payment platforms, databases, and DevOps tools, nearly doubled scanning speed, plus new revokers for SendGrid, Slack, and Heroku.
+    Source: GitGuardian Detection Engine | Feb 19, 2026
+    https://docs.gitguardian.com/releases/detection-engine/2026/02/19/changelog
+
+============================================================
+Powered by DailyCTI -- Open-source cybersecurity intelligence
+All summaries are AI-generated. Verify with primary sources.
+============================================================

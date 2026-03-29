@@ -1,0 +1,204 @@
+# =============================================================================
+# DailyCTI -- Entity Knowledge Base
+# =============================================================================
+# Threat actor aliases and malware family names for fuzzy matching.
+# Source: MITRE ATT&CK Enterprise (groups + software), supplemented by
+# industry-standard naming conventions.
+#
+# Used by: src/fidlie/ai/entities.py (rapidfuzz matching)
+# =============================================================================
+
+# --- Threat Actor Aliases ---
+# Maps canonical name to known aliases (all names used by vendors)
+threat_actors:
+  APT28:
+    aliases: ["Fancy Bear", "Sofacy", "Sednit", "STRONTIUM", "Forest Blizzard", "Pawn Storm", "Tsar Team", "Group 74"]
+    origin: "Russia"
+    targets: ["government", "military", "media", "defense"]
+
+  APT29:
+    aliases: ["Cozy Bear", "NOBELIUM", "Midnight Blizzard", "The Dukes", "Dark Halo", "Cloaked Ursa", "UNC2452"]
+    origin: "Russia"
+    targets: ["government", "technology", "think tanks"]
+
+  APT41:
+    aliases: ["Double Dragon", "Winnti", "Barium", "Wicked Panda", "Brass Typhoon"]
+    origin: "China"
+    targets: ["technology", "healthcare", "gaming", "telecommunications"]
+
+  Lazarus Group:
+    aliases: ["HIDDEN COBRA", "Zinc", "Diamond Sleet", "Labyrinth Chollima", "APT38", "BlueNoroff", "Sapphire Sleet"]
+    origin: "North Korea"
+    targets: ["financial", "cryptocurrency", "defense", "technology"]
+
+  Kimsuky:
+    aliases: ["Velvet Chollima", "Emerald Sleet", "THALLIUM", "Black Banshee", "APT43"]
+    origin: "North Korea"
+    targets: ["government", "research", "think tanks", "media"]
+
+  Sandworm:
+    aliases: ["Voodoo Bear", "IRIDIUM", "Seashell Blizzard", "Telebots", "BlackEnergy Group", "UAC-0082"]
+    origin: "Russia"
+    targets: ["energy", "government", "critical infrastructure"]
+
+  Volt Typhoon:
+    aliases: ["BRONZE SILHOUETTE", "Vanguard Panda", "DEV-0391", "Insidious Taurus", "UNC3236"]
+    origin: "China"
+    targets: ["critical infrastructure", "telecommunications", "government"]
+
+  Salt Typhoon:
+    aliases: ["GhostEmperor", "FamousSparrow", "UNC2286"]
+    origin: "China"
+    targets: ["telecommunications", "ISPs", "government"]
+
+  Scattered Spider:
+    aliases: ["UNC3944", "Roasted 0ktapus", "Star Fraud", "Muddled Libra", "Octo Tempest"]
+    origin: "USA/UK"
+    targets: ["technology", "telecommunications", "gaming", "hospitality"]
+
+  FIN7:
+    aliases: ["Carbanak", "Carbon Spider", "Sangria Tempest", "ELBRUS"]
+    origin: "Russia"
+    targets: ["financial", "retail", "hospitality"]
+
+  Turla:
+    aliases: ["Snake", "Venomous Bear", "KRYPTON", "Secret Blizzard", "Waterbug", "WhiteBear"]
+    origin: "Russia"
+    targets: ["government", "military", "diplomatic"]
+
+  MuddyWater:
+    aliases: ["Mercury", "Mango Sandstorm", "TEMP.Zagros", "Seedworm", "Static Kitten"]
+    origin: "Iran"
+    targets: ["government", "telecommunications", "energy"]
+
+  Charming Kitten:
+    aliases: ["APT35", "Phosphorus", "Mint Sandstorm", "NEWSCASTER", "Ajax Security Team", "TA453"]
+    origin: "Iran"
+    targets: ["government", "academia", "media", "dissidents"]
+
+  LockBit:
+    aliases: ["LockBit 2.0", "LockBit 3.0", "LockBit Black", "LockBit Green"]
+    origin: "Russia (ransomware group)"
+    targets: ["all sectors"]
+
+  BlackCat:
+    aliases: ["ALPHV", "Noberus", "Sphynx"]
+    origin: "Russia (ransomware group)"
+    targets: ["all sectors"]
+
+  Cl0p:
+    aliases: ["Clop", "TA505", "FIN11", "Lace Tempest"]
+    origin: "Russia (ransomware group)"
+    targets: ["all sectors", "MOVEit", "file transfer"]
+
+  Black Basta:
+    aliases: ["Storm-0506", "Cardinal"]
+    origin: "Russia (ransomware group)"
+    targets: ["all sectors"]
+
+  RansomHub:
+    aliases: ["Cyclops", "Knight"]
+    origin: "Unknown (ransomware group)"
+    targets: ["all sectors"]
+
+  Play:
+    aliases: ["PlayCrypt", "Balloonfly"]
+    origin: "Unknown (ransomware group)"
+    targets: ["all sectors"]
+
+# --- Malware Families ---
+# Common malware families for entity extraction matching
+malware_families:
+  # RATs & Backdoors
+  - name: "Cobalt Strike"
+    aliases: ["CobaltStrike", "Beacon", "CS Beacon"]
+    type: "tool"
+  - name: "Sliver"
+    aliases: ["SliverC2"]
+    type: "tool"
+  - name: "Brute Ratel"
+    aliases: ["BRc4", "BruteRatel"]
+    type: "tool"
+  - name: "Havoc"
+    aliases: ["HavocC2", "Havoc Framework"]
+    type: "tool"
+  - name: "Meterpreter"
+    aliases: ["Metasploit Meterpreter"]
+    type: "tool"
+
+  # Loaders & Droppers
+  - name: "QakBot"
+    aliases: ["Qbot", "QuakBot", "Pinkslipbot"]
+    type: "loader"
+  - name: "Emotet"
+    aliases: ["Heodo", "Geodo"]
+    type: "loader"
+  - name: "IcedID"
+    aliases: ["BokBot"]
+    type: "loader"
+  - name: "BumbleBee"
+    aliases: ["Bumblebee Loader"]
+    type: "loader"
+  - name: "Pikabot"
+    aliases: []
+    type: "loader"
+  - name: "DarkGate"
+    aliases: []
+    type: "loader"
+
+  # Infostealers
+  - name: "RedLine"
+    aliases: ["RedLine Stealer"]
+    type: "infostealer"
+  - name: "Raccoon"
+    aliases: ["Raccoon Stealer", "RecordBreaker"]
+    type: "infostealer"
+  - name: "Vidar"
+    aliases: ["Vidar Stealer"]
+    type: "infostealer"
+  - name: "Lumma"
+    aliases: ["LummaC2", "Lumma Stealer"]
+    type: "infostealer"
+  - name: "StealC"
+    aliases: ["Steal C"]
+    type: "infostealer"
+
+  # Ransomware
+  - name: "LockBit"
+    aliases: ["LockBit 3.0", "LockBit Black"]
+    type: "ransomware"
+  - name: "BlackCat"
+    aliases: ["ALPHV"]
+    type: "ransomware"
+  - name: "Cl0p"
+    aliases: ["Clop"]
+    type: "ransomware"
+  - name: "Black Basta"
+    aliases: []
+    type: "ransomware"
+  - name: "Akira"
+    aliases: []
+    type: "ransomware"
+  - name: "Rhysida"
+    aliases: []
+    type: "ransomware"
+  - name: "Medusa"
+    aliases: ["MedusaLocker"]
+    type: "ransomware"
+  - name: "Royal"
+    aliases: ["BlackSuit"]
+    type: "ransomware"
+  - name: "RansomHub"
+    aliases: []
+    type: "ransomware"
+
+  # Wipers
+  - name: "HermeticWiper"
+    aliases: ["FoxBlade"]
+    type: "wiper"
+  - name: "CaddyWiper"
+    aliases: []
+    type: "wiper"
+  - name: "AcidRain"
+    aliases: []
+    type: "wiper"

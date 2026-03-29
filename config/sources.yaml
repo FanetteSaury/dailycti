@@ -1,0 +1,961 @@
+# =============================================================================
+# DailyCTI - Cybersecurity Intelligence Feed Source Catalog
+# =============================================================================
+#
+# TIER DEFINITIONS:
+#   Tier 1 - Critical Sources (poll every 15 min)
+#     Authoritative vulnerability databases, actively-exploited threat feeds,
+#     and breaking security news. Delays here mean missed zero-days.
+#
+#   Tier 2 - High Value Sources (poll every 30 min)
+#     Major vendor research blogs, government CERTs, and premium threat
+#     intelligence platforms. Essential but slightly less time-sensitive.
+#
+#   Tier 3 - Supplementary Sources (poll every 60 min)
+#     Community forums, individual researcher blogs, niche vendor blogs,
+#     and additional enrichment feeds. Valuable for depth and context.
+#
+# CATEGORY DEFINITIONS:
+#   government       - Government agencies and national CERTs
+#   vendor_advisory  - Vendor-issued security advisories and patches
+#   research_blog    - Threat research and analysis from security firms
+#   news             - Security journalism and breaking news
+#   threat_intel     - Threat intelligence platforms and IOC feeds
+#   vulnerability_db - Vulnerability databases and exploit repositories
+#   community        - Community-driven content, forums, individual blogs
+#   standards        - Standards bodies, frameworks (e.g., MITRE ATT&CK)
+#
+# RELIABILITY RATINGS:
+#   excellent  - Primary/authoritative source, rarely inaccurate
+#   very_good  - Highly trusted, minor delays or occasional gaps
+#   good       - Reliable with occasional noise or lag
+#   fair       - Useful but requires cross-referencing
+#
+# =============================================================================
+
+sources:
+
+  # ===========================================================================
+  # TIER 1 -- Critical Sources (14 sources, poll every 15 minutes)
+  # ===========================================================================
+
+  - name: "CISA Known Exploited Vulnerabilities Catalog"
+    url: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+    feed_url: "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+    type: json
+    tier: 1
+    poll_interval_minutes: 15
+    category: government
+    reliability: excellent
+    content_focus: "Actively exploited vulnerabilities mandated for federal remediation"
+    enabled: true
+
+  - name: "CISA Cybersecurity Advisories"
+    url: "https://www.cisa.gov/cybersecurity-advisories"
+    feed_url: "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: government
+    reliability: excellent
+    content_focus: "ICS advisories, alerts, and analysis reports from CISA"
+    enabled: true
+
+  - name: "NVD API 2.0"
+    url: "https://nvd.nist.gov/"
+    feed_url: "https://services.nvd.nist.gov/rest/json/cves/2.0"
+    type: api
+    tier: 1
+    poll_interval_minutes: 15
+    category: vulnerability_db
+    reliability: excellent
+    content_focus: "Comprehensive CVE vulnerability database with CVSS scoring"
+    enabled: true
+
+  - name: "MITRE CVE List"
+    url: "https://cve.mitre.org/"
+    feed_url: "https://github.com/CVEProject/cvelistV5"
+    type: api  # GitHub-based API
+    tier: 1
+    poll_interval_minutes: 15
+    category: vulnerability_db
+    reliability: excellent
+    content_focus: "Canonical CVE identifier assignments and descriptions"
+    enabled: true
+
+  - name: "BleepingComputer"
+    url: "https://www.bleepingcomputer.com/"
+    feed_url: "https://www.bleepingcomputer.com/feed/"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: news
+    reliability: very_good
+    content_focus: "Breaking cybersecurity news, ransomware tracking, and vulnerability disclosure"
+    enabled: true
+
+  - name: "The Hacker News"
+    url: "https://thehackernews.com/"
+    feed_url: "https://feeds.feedburner.com/TheHackersNews"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: news
+    reliability: very_good
+    content_focus: "Global cybersecurity news, data breaches, and attack campaigns"
+    enabled: true
+
+  - name: "Krebs on Security"
+    url: "https://krebsonsecurity.com/"
+    feed_url: "https://krebsonsecurity.com/feed/"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: news
+    reliability: excellent
+    content_focus: "Investigative cybercrime journalism and breach reporting"
+    enabled: true
+
+  - name: "abuse.ch URLhaus"
+    url: "https://urlhaus.abuse.ch/"
+    feed_url: "https://urlhaus-api.abuse.ch/"
+    type: api
+    tier: 1
+    poll_interval_minutes: 15
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Malicious URL distribution tracking and malware delivery infrastructure"
+    enabled: true
+
+  - name: "abuse.ch ThreatFox"
+    url: "https://threatfox.abuse.ch/"
+    feed_url: "https://threatfox-api.abuse.ch/api/v1/"
+    type: api
+    tier: 1
+    poll_interval_minutes: 15
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Indicators of compromise (IOCs) shared by the security community"
+    enabled: true
+
+  - name: "abuse.ch MalwareBazaar"
+    url: "https://bazaar.abuse.ch/"
+    feed_url: "https://bazaar.abuse.ch/api/"
+    type: api
+    tier: 1
+    poll_interval_minutes: 15
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Malware sample sharing and hash lookups for threat hunting"
+    enabled: true
+
+  - name: "Microsoft MSRC"
+    url: "https://msrc.microsoft.com/"
+    feed_url: "https://api.msrc.microsoft.com/update-guide/rss"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: vendor_advisory
+    reliability: excellent
+    content_focus: "Microsoft security vulnerability advisories and Patch Tuesday updates"
+    enabled: true
+
+  - name: "Google Project Zero"
+    url: "https://googleprojectzero.blogspot.com/"
+    feed_url: "https://googleprojectzero.blogspot.com/feeds/posts/default?alt=rss"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: research_blog
+    reliability: excellent
+    content_focus: "Zero-day vulnerability research and disclosure from Google Project Zero"
+    enabled: true
+
+  - name: "Google Threat Analysis Group"
+    url: "https://blog.google/threat-analysis-group/"
+    feed_url: "https://blog.google/threat-analysis-group/rss/"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: research_blog
+    reliability: excellent
+    content_focus: "Nation-state threat actor tracking and coordinated influence operations"
+    enabled: true
+
+  - name: "GitGuardian Detection Engine"
+    url: "https://docs.gitguardian.com/"
+    feed_url: "https://docs.gitguardian.com/releases/detection-engine/rss.xml"
+    type: rss
+    tier: 1
+    poll_interval_minutes: 15
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "Secret detection engine updates and new detector releases"
+    enabled: true
+
+  # ===========================================================================
+  # TIER 2 -- High Value Sources (25 sources, poll every 30 minutes)
+  # ===========================================================================
+
+  - name: "Palo Alto Unit 42"
+    url: "https://unit42.paloaltonetworks.com/"
+    feed_url: "https://unit42.paloaltonetworks.com/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: excellent
+    content_focus: "APT campaigns, malware analysis, and threat landscape reports"
+    enabled: true
+
+  - name: "Mandiant Blog"
+    url: "https://www.mandiant.com/resources/blog"
+    feed_url: "https://www.mandiant.com/resources/blog/rss.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: excellent
+    content_focus: "Incident response findings, APT attribution, and threat research"
+    enabled: true
+
+  - name: "Cisco Talos Intelligence"
+    url: "https://blog.talosintelligence.com/"
+    feed_url: "https://blog.talosintelligence.com/rss/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: excellent
+    content_focus: "Vulnerability discovery, malware campaigns, and network threat intelligence"
+    enabled: true
+
+  - name: "CrowdStrike Blog"
+    url: "https://www.crowdstrike.com/blog/"
+    feed_url: "https://www.crowdstrike.com/blog/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Adversary tracking, eCrime analysis, and endpoint threat research"
+    enabled: true
+
+  - name: "SentinelOne Labs"
+    url: "https://www.sentinelone.com/labs/"
+    feed_url: "https://www.sentinelone.com/labs/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Malware reverse engineering, threat actor analysis, and vulnerability research"
+    enabled: true
+
+  - name: "Dark Reading"
+    url: "https://www.darkreading.com/"
+    feed_url: "https://www.darkreading.com/rss.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: news
+    reliability: very_good
+    content_focus: "Enterprise security news, analysis, and industry trends"
+    enabled: true
+
+  - name: "SecurityWeek"
+    url: "https://www.securityweek.com/"
+    feed_url: "https://www.securityweek.com/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: news
+    reliability: very_good
+    content_focus: "Cybersecurity news, vulnerability reports, and conference coverage"
+    enabled: true
+
+  - name: "The Record by Recorded Future"
+    url: "https://therecord.media/"
+    feed_url: "https://therecord.media/feed"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: news
+    reliability: very_good
+    content_focus: "Cybercrime reporting, nation-state activity, and policy developments"
+    enabled: true
+
+  - name: "NCSC UK Advisories"
+    url: "https://www.ncsc.gov.uk/section/keep-up-to-date/reports-advisories"
+    feed_url: "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: government
+    reliability: excellent
+    content_focus: "UK national cybersecurity advisories and technical guidance"
+    enabled: true
+
+  - name: "NCSC UK News"
+    url: "https://www.ncsc.gov.uk/news"
+    feed_url: "https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: government
+    reliability: excellent
+    content_focus: "UK cybersecurity news, campaigns, and public awareness"
+    enabled: true
+
+  - name: "ENISA Publications"
+    url: "https://www.enisa.europa.eu/publications"
+    feed_url: "https://www.enisa.europa.eu/publications/rss.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: government
+    reliability: excellent
+    content_focus: "EU cybersecurity reports, threat landscapes, and policy guidance"
+    enabled: true
+
+  - name: "AlienVault OTX"
+    url: "https://otx.alienvault.com/"
+    feed_url: "https://otx.alienvault.com/api/"
+    type: api
+    tier: 2
+    poll_interval_minutes: 30
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Community-driven threat intelligence pulses and IOC sharing"
+    enabled: true
+
+  - name: "Exploit-DB"
+    url: "https://www.exploit-db.com/"
+    feed_url: "https://www.exploit-db.com/rss.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: vulnerability_db
+    reliability: very_good
+    content_focus: "Public exploits and proof-of-concept code for disclosed vulnerabilities"
+    enabled: true
+
+  - name: "ESET WeLiveSecurity"
+    url: "https://www.welivesecurity.com/"
+    feed_url: "https://www.welivesecurity.com/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Malware research, APT campaigns, and digital privacy analysis"
+    enabled: true
+
+  - name: "Sophos Threat Research"
+    url: "https://news.sophos.com/en-us/category/threat-research/"
+    feed_url: "https://news.sophos.com/en-us/category/threat-research/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Ransomware tracking, malware analysis, and attack technique research"
+    enabled: true
+
+  - name: "Trend Micro Research"
+    url: "https://www.trendmicro.com/en_us/research.html"
+    feed_url: "https://feeds.trendmicro.com/TrendMicroResearch"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Threat reports, vulnerability analysis, and cybercrime investigations"
+    enabled: true
+
+  - name: "Kaspersky Securelist"
+    url: "https://securelist.com/"
+    feed_url: "https://securelist.com/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "APT research, malware analysis, and threat statistics"
+    enabled: true
+
+  - name: "Check Point Research"
+    url: "https://research.checkpoint.com/"
+    feed_url: "https://research.checkpoint.com/feed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Vulnerability discovery, malware reverse engineering, and threat reports"
+    enabled: true
+
+  - name: "Elastic Security Labs"
+    url: "https://www.elastic.co/security-labs"
+    feed_url: "https://www.elastic.co/security-labs/rss/feed.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Detection engineering, malware analysis, and threat research"
+    enabled: true
+
+  - name: "CERT/CC Vulnerability Notes"
+    url: "https://www.kb.cert.org/vuls/"
+    feed_url: "https://www.kb.cert.org/vuls/atomfeed/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: vulnerability_db
+    reliability: excellent
+    content_focus: "Coordinated vulnerability disclosure and vendor-neutral advisories"
+    enabled: true
+
+  - name: "Recorded Future Blog"
+    url: "https://www.recordedfuture.com/blog"
+    feed_url: "https://www.recordedfuture.com/feed"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Threat intelligence analysis, geopolitical cyber threats, and dark web insights"
+    enabled: true
+
+  - name: "Fortinet FortiGuard"
+    url: "https://www.fortiguard.com/"
+    feed_url: "https://www.fortiguard.com/rss/ir.xml"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "Outbreak alerts, threat signals, and vulnerability advisories"
+    enabled: true
+
+  - name: "Risky Business News"
+    url: "https://news.risky.biz/"
+    feed_url: "https://news.risky.biz/rss/"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: news
+    reliability: very_good
+    content_focus: "Curated cybersecurity news digest and industry commentary"
+    enabled: true
+
+  - name: "Symantec Threat Advisory"
+    url: "https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence"
+    feed_url: "https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/rss"
+    type: rss
+    tier: 2
+    poll_interval_minutes: 30
+    category: research_blog
+    reliability: very_good
+    content_focus: "Threat actor profiles, malware campaigns, and targeted attack analysis"
+    enabled: true
+
+  - name: "MITRE ATT&CK TAXII"
+    url: "https://attack.mitre.org/"
+    feed_url: "https://cti-taxii.mitre.org/taxii2/"
+    type: taxii
+    tier: 2
+    poll_interval_minutes: 30
+    category: standards
+    reliability: excellent
+    content_focus: "ATT&CK framework updates, technique mappings, and threat group profiles"
+    enabled: true
+
+  # ===========================================================================
+  # TIER 3 -- Supplementary Sources (44 sources, poll every 60 minutes)
+  # ===========================================================================
+
+  - name: "Reddit r/netsec"
+    url: "https://www.reddit.com/r/netsec/"
+    feed_url: "https://www.reddit.com/r/netsec/.rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Technical security research papers, tools, and vulnerability write-ups"
+    enabled: true
+
+  - name: "Reddit r/cybersecurity"
+    url: "https://www.reddit.com/r/cybersecurity/"
+    feed_url: "https://www.reddit.com/r/cybersecurity/.rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "General cybersecurity discussion, career advice, and news sharing"
+    enabled: true
+
+  - name: "Reddit r/blueteamsec"
+    url: "https://www.reddit.com/r/blueteamsec/"
+    feed_url: "https://www.reddit.com/r/blueteamsec/.rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Defensive security, detection engineering, and SOC-focused content"
+    enabled: true
+
+  - name: "Reddit r/malware"
+    url: "https://www.reddit.com/r/malware/"
+    feed_url: "https://www.reddit.com/r/malware/.rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Malware samples, analysis discussions, and reverse engineering"
+    enabled: true
+
+  - name: "Reddit r/ReverseEngineering"
+    url: "https://www.reddit.com/r/ReverseEngineering/"
+    feed_url: "https://www.reddit.com/r/ReverseEngineering/.rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Binary analysis, disassembly techniques, and RE tooling"
+    enabled: true
+
+  - name: "Schneier on Security"
+    url: "https://www.schneier.com/"
+    feed_url: "https://www.schneier.com/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: excellent
+    content_focus: "Cryptography, security policy, and thoughtful security commentary"
+    enabled: true
+
+  - name: "OSV - Open Source Vulnerabilities"
+    url: "https://osv.dev/"
+    feed_url: "https://api.osv.dev/"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: vulnerability_db
+    reliability: very_good
+    content_focus: "Open source software vulnerability database across multiple ecosystems"
+    enabled: true
+
+  - name: "GitHub Advisory Database"
+    url: "https://github.com/advisories"
+    feed_url: "https://api.github.com/graphql"
+    type: graphql
+    tier: 3
+    poll_interval_minutes: 60
+    category: vulnerability_db
+    reliability: very_good
+    content_focus: "Security advisories for packages across npm, pip, RubyGems, and more"
+    enabled: true
+
+  - name: "Packet Storm Security"
+    url: "https://packetstormsecurity.com/"
+    feed_url: "https://rss.packetstormsecurity.com/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vulnerability_db
+    reliability: good
+    content_focus: "Exploit code, advisories, and security tools"
+    enabled: true
+
+  - name: "SC Media"
+    url: "https://www.scmagazine.com/"
+    feed_url: "https://www.scmagazine.com/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: news
+    reliability: good
+    content_focus: "Enterprise security news, product reviews, and industry analysis"
+    enabled: true
+
+  - name: "Infosecurity Magazine"
+    url: "https://www.infosecurity-magazine.com/"
+    feed_url: "https://www.infosecurity-magazine.com/rss/news/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: news
+    reliability: good
+    content_focus: "Information security news, events, and professional development"
+    enabled: true
+
+  - name: "CyberScoop"
+    url: "https://cyberscoop.com/"
+    feed_url: "https://cyberscoop.com/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: news
+    reliability: very_good
+    content_focus: "Government cybersecurity policy, defense sector, and federal IT security"
+    enabled: true
+
+  - name: "ACSC Australia"
+    url: "https://www.cyber.gov.au/about-us/advisories"
+    feed_url: "https://www.cyber.gov.au/about-us/advisories"
+    type: rss  # May require scraping
+    tier: 3
+    poll_interval_minutes: 60
+    category: government
+    reliability: very_good
+    content_focus: "Australian government cybersecurity advisories and alerts"
+    enabled: true
+
+  - name: "Canadian CCCS"
+    url: "https://www.cyber.gc.ca/en/alerts-advisories"
+    feed_url: "https://www.cyber.gc.ca/en/alerts-advisories"
+    type: rss  # May require scraping
+    tier: 3
+    poll_interval_minutes: 60
+    category: government
+    reliability: very_good
+    content_focus: "Canadian national cybersecurity advisories and joint alerts"
+    enabled: true
+
+  - name: "JPCERT/CC"
+    url: "https://www.jpcert.or.jp/english/"
+    feed_url: "https://www.jpcert.or.jp/english/rss/jpcert-en.rdf"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: government
+    reliability: very_good
+    content_focus: "Japanese CERT advisories, vulnerability notes, and incident reports"
+    enabled: true
+
+  - name: "PhishTank"
+    url: "https://phishtank.org/"
+    feed_url: "https://data.phishtank.com/data/"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: good
+    content_focus: "Community-verified phishing URL database"
+    enabled: true
+
+  - name: "OpenPhish"
+    url: "https://openphish.com/"
+    feed_url: "https://openphish.com/feed.txt"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: good
+    content_focus: "Automated phishing URL detection and intelligence feed"
+    enabled: true
+
+  - name: "GreyNoise"
+    url: "https://www.greynoise.io/"
+    feed_url: "https://docs.greynoise.io/"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Internet-wide scan and attack traffic analysis and noise filtering"
+    enabled: true
+
+  - name: "Pulsedive"
+    url: "https://pulsedive.com/"
+    feed_url: "https://pulsedive.com/"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: good
+    content_focus: "IOC enrichment, threat intelligence correlation, and risk scoring"
+    enabled: true
+
+  - name: "Troy Hunt Blog"
+    url: "https://www.troyhunt.com/"
+    feed_url: "https://www.troyhunt.com/rss/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: very_good
+    content_focus: "Data breach analysis, web security, and Have I Been Pwned updates"
+    enabled: true
+
+  - name: "Graham Cluley"
+    url: "https://grahamcluley.com/"
+    feed_url: "https://grahamcluley.com/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Accessible cybersecurity commentary, scam awareness, and privacy"
+    enabled: true
+
+  - name: "Daniel Miessler Newsletter"
+    url: "https://danielmiessler.com/"
+    feed_url: "https://danielmiessler.com/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Security concepts, AI in security, and curated intelligence summaries"
+    enabled: true
+
+  - name: "abuse.ch Feodo Tracker"
+    url: "https://feodotracker.abuse.ch/"
+    feed_url: "https://feodotracker.abuse.ch/downloads/ipblocklist.csv"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Botnet C2 IP blocklists for Dridex, Emotet, TrickBot, and QakBot"
+    enabled: true
+
+  - name: "abuse.ch SSL Blacklist"
+    url: "https://sslbl.abuse.ch/"
+    feed_url: "https://sslbl.abuse.ch/blacklist/"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: very_good
+    content_focus: "Malicious SSL certificate fingerprints used by botnet C2 servers"
+    enabled: true
+
+  - name: "VirusTotal Blog"
+    url: "https://blog.virustotal.com/"
+    feed_url: "https://blog.virustotal.com/feeds/posts/default?alt=rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "Threat landscape insights, malware trends, and platform feature updates"
+    enabled: true
+
+  - name: "ANY.RUN Blog"
+    url: "https://any.run/cybersecurity-blog/"
+    feed_url: "https://any.run/cybersecurity-blog/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: good
+    content_focus: "Malware sandbox analysis, phishing trends, and threat hunting techniques"
+    enabled: true
+
+  - name: "MalwareTech Blog"
+    url: "https://www.malwaretech.com/"
+    feed_url: "https://www.malwaretech.com/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: community
+    reliability: good
+    content_focus: "Malware analysis, botnet tracking, and reverse engineering write-ups"
+    enabled: true
+
+  - name: "Wiz Research"
+    url: "https://www.wiz.io/blog/tag/research"
+    feed_url: "https://www.wiz.io/blog/tag/research"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "Cloud security vulnerabilities, misconfigurations, and cross-tenant attacks"
+    enabled: true
+
+  - name: "SANS ISC Diary"
+    url: "https://isc.sans.edu/"
+    feed_url: "https://isc.sans.edu/rssfeed.xml"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: excellent
+    content_focus: "Daily threat diary entries, honeypot data, and network security analysis"
+    enabled: true
+
+  - name: "Qualys Blog"
+    url: "https://blog.qualys.com/"
+    feed_url: "https://blog.qualys.com/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "Vulnerability management insights, patch analysis, and compliance"
+    enabled: true
+
+  - name: "Rapid7 Blog"
+    url: "https://www.rapid7.com/blog/"
+    feed_url: "https://www.rapid7.com/blog/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "Vulnerability research, Metasploit updates, and incident response insights"
+    enabled: true
+
+  - name: "Tenable Blog"
+    url: "https://www.tenable.com/blog"
+    feed_url: "https://www.tenable.com/blog/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "Vulnerability analysis, exposure management, and cloud security research"
+    enabled: true
+
+  - name: "Dragos Blog"
+    url: "https://www.dragos.com/blog/"
+    feed_url: "https://www.dragos.com/blog/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "ICS/OT security, industrial threat groups, and critical infrastructure"
+    enabled: true
+
+  - name: "Wordfence Blog"
+    url: "https://www.wordfence.com/blog/"
+    feed_url: "https://www.wordfence.com/blog/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: good
+    content_focus: "WordPress vulnerability disclosures, plugin security, and web app attacks"
+    enabled: true
+
+  - name: "Snyk Blog"
+    url: "https://snyk.io/blog/"
+    feed_url: "https://snyk.io/blog/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "Open source security, supply chain vulnerabilities, and developer security"
+    enabled: true
+
+  - name: "Microsoft Threat Intelligence Blog"
+    url: "https://www.microsoft.com/en-us/security/blog/"
+    feed_url: "https://www.microsoft.com/en-us/security/blog/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: excellent
+    content_focus: "Nation-state threat tracking, ransomware analysis, and security research"
+    enabled: true
+
+  - name: "Cisco Security Blog"
+    url: "https://blogs.cisco.com/security"
+    feed_url: "https://blogs.cisco.com/security/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "Network security advisories, product updates, and threat trends"
+    enabled: true
+
+  - name: "Cloudflare Security Blog"
+    url: "https://blog.cloudflare.com/tag/security/"
+    feed_url: "https://blog.cloudflare.com/tag/security/rss/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "DDoS trends, web application security, and internet threat landscape"
+    enabled: true
+
+  - name: "AWS Security Blog"
+    url: "https://aws.amazon.com/blogs/security/"
+    feed_url: "https://aws.amazon.com/blogs/security/feed/"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "AWS security best practices, IAM guidance, and cloud security features"
+    enabled: true
+
+  - name: "Google Cloud Security Blog"
+    url: "https://cloud.google.com/blog/products/identity-security"
+    feed_url: "https://cloud.google.com/blog/products/identity-security/rss"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vendor_advisory
+    reliability: very_good
+    content_focus: "GCP security features, threat detection, and cloud security posture"
+    enabled: true
+
+  - name: "Akamai Blog"
+    url: "https://www.akamai.com/blog"
+    feed_url: "https://www.akamai.com/blog/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "DDoS mitigation, web application firewall trends, and API security"
+    enabled: true
+
+  - name: "Proofpoint Blog"
+    url: "https://www.proofpoint.com/us/blog"
+    feed_url: "https://www.proofpoint.com/us/blog/feed"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: research_blog
+    reliability: very_good
+    content_focus: "Email threat landscape, phishing campaigns, and social engineering tactics"
+    enabled: true
+
+  - name: "Malpedia"
+    url: "https://malpedia.caad.fkie.fraunhofer.de/"
+    feed_url: "https://malpedia.caad.fkie.fraunhofer.de/"
+    type: api
+    tier: 3
+    poll_interval_minutes: 60
+    category: threat_intel
+    reliability: excellent
+    content_focus: "Malware family encyclopedia, YARA rules, and actor-to-malware mappings"
+    enabled: true
+
+  - name: "VulDB"
+    url: "https://vuldb.com/"
+    feed_url: "https://vuldb.com/?rss.recent"
+    type: rss
+    tier: 3
+    poll_interval_minutes: 60
+    category: vulnerability_db
+    reliability: good
+    content_focus: "Vulnerability database with exploit pricing and threat intelligence context"
+    enabled: true

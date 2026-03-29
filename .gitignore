@@ -1,0 +1,36 @@
+.env
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+dist/
+*.egg-info/
+archive/
+.venv/
+node_modules/
+demo/.env
+demo/subscribers.csv
+
+# Added by ggshield
+.cache_ggshield
+.claude/
+CLAUDE.md
+
+# Internal docs (keep only PRD, PIPELINE, FEASIBILITY public)
+docs/AI_ENGINE_SPEC.md
+docs/API_SPEC.md
+docs/AUDIT.md
+docs/COMPETITIVE_ANALYSIS.md
+docs/DEMO.md
+docs/DEPENDENCY_AUDIT.md
+docs/DISCUSSIONS.md
+docs/LAUNCH_PLAN.md
+docs/MANAGEMENT.md
+docs/NEWSLETTER_SAMPLES.md
+docs/NEWSLETTER_SPEC.md
+docs/PRODUCT_BRIEF.md
+docs/SPECIFICATION.md
+docs/TASKLOG.md
+docs/TASKS.md
+docs/VIDEO_OUTLINE.md

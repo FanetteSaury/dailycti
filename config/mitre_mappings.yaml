@@ -1,0 +1,253 @@
+# =============================================================================
+# DailyCTI -- MITRE ATT&CK Keyword-to-Technique Mappings
+# =============================================================================
+# Rule-based first pass for ATT&CK technique mapping.
+# Claude API is used as a second pass for high-priority articles.
+#
+# Source: MITRE ATT&CK Enterprise Matrix v15+
+# Format: technique_id: [keyword patterns]
+# =============================================================================
+
+# --- Reconnaissance (TA0043) ---
+reconnaissance:
+  T1595:  # Active Scanning
+    - "port scan"
+    - "vulnerability scan"
+    - "active scanning"
+    - "network scanning"
+    - "shodan"
+    - "masscan"
+    - "nmap"
+  T1592:  # Gather Victim Host Information
+    - "host enumeration"
+    - "fingerprinting"
+  T1589:  # Gather Victim Identity Information
+    - "credential harvesting"
+    - "email harvesting"
+  T1598:  # Phishing for Information
+    - "spearphishing"
+    - "phishing for information"
+
+# --- Initial Access (TA0001) ---
+initial_access:
+  T1566:  # Phishing
+    - "phishing"
+    - "spear-phishing"
+    - "spearphishing"
+    - "phishing email"
+    - "phishing campaign"
+    - "business email compromise"
+    - "BEC"
+  T1566.001:  # Spearphishing Attachment
+    - "malicious attachment"
+    - "weaponized document"
+    - "macro-enabled"
+    - "spearphishing attachment"
+  T1566.002:  # Spearphishing Link
+    - "spearphishing link"
+    - "malicious link"
+    - "credential phishing"
+  T1190:  # Exploit Public-Facing Application
+    - "exploit public-facing"
+    - "web application exploit"
+    - "RCE vulnerability"
+    - "remote code execution"
+    - "SQL injection"
+    - "command injection"
+    - "deserialization"
+  T1133:  # External Remote Services
+    - "VPN exploit"
+    - "RDP exploit"
+    - "remote desktop"
+    - "external remote service"
+    - "Citrix exploit"
+    - "Pulse Secure"
+    - "Ivanti"
+  T1078:  # Valid Accounts
+    - "stolen credentials"
+    - "credential stuffing"
+    - "compromised credentials"
+    - "valid accounts"
+    - "password spray"
+  T1195:  # Supply Chain Compromise
+    - "supply chain"
+    - "software supply chain"
+    - "dependency confusion"
+    - "typosquatting"
+    - "compromised update"
+    - "SolarWinds"
+  T1199:  # Trusted Relationship
+    - "trusted relationship"
+    - "third-party compromise"
+    - "MSP compromise"
+
+# --- Execution (TA0002) ---
+execution:
+  T1059:  # Command and Scripting Interpreter
+    - "PowerShell"
+    - "cmd.exe"
+    - "bash script"
+    - "python script"
+    - "VBScript"
+    - "JScript"
+    - "command line"
+  T1059.001:  # PowerShell
+    - "PowerShell"
+    - "powershell.exe"
+    - "Invoke-Expression"
+    - "IEX"
+  T1204:  # User Execution
+    - "user execution"
+    - "social engineering"
+    - "lure document"
+  T1203:  # Exploitation for Client Execution
+    - "browser exploit"
+    - "client-side exploit"
+    - "drive-by download"
+    - "watering hole"
+
+# --- Persistence (TA0003) ---
+persistence:
+  T1547:  # Boot or Logon Autostart Execution
+    - "registry run key"
+    - "autostart"
+    - "startup folder"
+    - "boot persistence"
+  T1053:  # Scheduled Task/Job
+    - "scheduled task"
+    - "cron job"
+    - "task scheduler"
+  T1136:  # Create Account
+    - "create account"
+    - "backdoor account"
+    - "rogue admin"
+  T1505.003:  # Web Shell
+    - "web shell"
+    - "webshell"
+    - "China Chopper"
+    - "Godzilla webshell"
+
+# --- Privilege Escalation (TA0004) ---
+privilege_escalation:
+  T1068:  # Exploitation for Privilege Escalation
+    - "privilege escalation"
+    - "local privilege escalation"
+    - "LPE"
+    - "EoP"
+    - "elevation of privilege"
+    - "kernel exploit"
+  T1548:  # Abuse Elevation Control Mechanism
+    - "UAC bypass"
+    - "sudo exploit"
+    - "setuid"
+
+# --- Defense Evasion (TA0005) ---
+defense_evasion:
+  T1027:  # Obfuscated Files or Information
+    - "obfuscation"
+    - "packing"
+    - "encryption"
+    - "steganography"
+    - "obfuscated"
+  T1562:  # Impair Defenses
+    - "disable antivirus"
+    - "disable EDR"
+    - "tamper protection"
+    - "kill security"
+  T1036:  # Masquerading
+    - "masquerading"
+    - "DLL side-loading"
+    - "DLL sideloading"
+
+# --- Credential Access (TA0006) ---
+credential_access:
+  T1003:  # OS Credential Dumping
+    - "credential dumping"
+    - "Mimikatz"
+    - "LSASS"
+    - "SAM dump"
+    - "NTDS.dit"
+    - "DCSync"
+    - "pass-the-hash"
+  T1110:  # Brute Force
+    - "brute force"
+    - "password spray"
+    - "credential stuffing"
+  T1557:  # Adversary-in-the-Middle
+    - "man-in-the-middle"
+    - "MITM"
+    - "AiTM"
+    - "adversary-in-the-middle"
+    - "SSL stripping"
+
+# --- Lateral Movement (TA0008) ---
+lateral_movement:
+  T1021:  # Remote Services
+    - "lateral movement"
+    - "RDP"
+    - "SMB"
+    - "WinRM"
+    - "SSH lateral"
+    - "PsExec"
+  T1210:  # Exploitation of Remote Services
+    - "EternalBlue"
+    - "BlueKeep"
+    - "ProxyLogon"
+    - "ProxyShell"
+
+# --- Collection (TA0009) ---
+collection:
+  T1005:  # Data from Local System
+    - "data exfiltration"
+    - "data theft"
+    - "data collection"
+    - "file collection"
+  T1114:  # Email Collection
+    - "email collection"
+    - "mailbox access"
+    - "Exchange compromise"
+
+# --- Exfiltration (TA0010) ---
+exfiltration:
+  T1041:  # Exfiltration Over C2 Channel
+    - "exfiltration"
+    - "data exfil"
+    - "data leak"
+    - "data stolen"
+  T1567:  # Exfiltration Over Web Service
+    - "cloud storage exfil"
+    - "Mega upload"
+    - "exfiltration web service"
+
+# --- Impact (TA0040) ---
+impact:
+  T1486:  # Data Encrypted for Impact
+    - "ransomware"
+    - "data encrypted"
+    - "file encryption"
+    - "ransom note"
+    - "double extortion"
+    - "LockBit"
+    - "BlackCat"
+    - "ALPHV"
+    - "Cl0p"
+    - "Royal"
+    - "Play ransomware"
+    - "Akira"
+    - "Black Basta"
+    - "Rhysida"
+    - "Medusa"
+  T1489:  # Service Stop
+    - "service disruption"
+    - "DoS"
+    - "DDoS"
+    - "denial of service"
+  T1485:  # Data Destruction
+    - "wiper"
+    - "data destruction"
+    - "disk wipe"
+    - "HermeticWiper"
+    - "WhisperGate"
+  T1491:  # Defacement
+    - "defacement"
+    - "website defaced"

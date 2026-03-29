@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ newsletter_name }} -- {{ date_str }}</title>
+  <!--[if mso]>
+  <style>table{border-collapse:collapse;}</style>
+  <![endif]-->
+</head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+
+<!-- Wrapper -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9;">
+<tr><td align="center" style="padding:20px 10px;">
+
+<!-- Main Container -->
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+
+<!-- Top Accent Bar -->
+<tr><td style="height:4px;background:linear-gradient(90deg,#2563eb,#0d9488);font-size:0;line-height:0;">&nbsp;</td></tr>
+
+<!-- Header -->
+<tr><td style="padding:28px 30px 20px 30px;border-bottom:1px solid #e5e7eb;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <div style="font-size:26px;font-weight:700;color:#0f172a;letter-spacing:-0.5px;">{{ newsletter_name }}</div>
+      <div style="font-size:14px;color:#64748b;margin-top:4px;">{{ tagline }}</div>
+    </td>
+    <td align="right" valign="top">
+      <div style="font-size:13px;color:#94a3b8;text-align:right;">{{ date_str }}</div>
+      <div style="font-size:12px;color:#94a3b8;text-align:right;margin-top:2px;">{{ article_count }} articles from {{ source_count }} sources</div>
+    </td>
+  </tr>
+  </table>
+</td></tr>
+
+<!-- Executive TL;DR -->
+{% if tldr_items %}
+<tr><td style="padding:24px 30px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#eff6ff;border-left:4px solid #2563eb;border-radius:0 6px 6px 0;">
+  <tr><td style="padding:18px 20px;">
+    <div style="font-size:15px;font-weight:700;color:#1e40af;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Executive TL;DR</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    {% for item in tldr_items %}
+    <tr>
+      <td valign="top" style="padding:0 8px 8px 0;width:16px;color:#2563eb;font-size:14px;">&#8226;</td>
+      <td style="padding-bottom:8px;font-size:14px;line-height:1.5;color:#1e3a5f;">
+        <strong>{{ item.title }}</strong>
+        {% if item.cves %}<span style="color:#dc2626;font-size:12px;"> ({{ item.cves|join(', ') }})</span>{% endif %}
+        -- <span style="color:#475569;">{{ item.summary[:120] }}{% if item.summary|length > 120 %}...{% endif %}</span>
+        <a href="{{ item.link }}" style="color:#2563eb;text-decoration:none;font-size:12px;"> [{{ item.source }}]</a>
+      </td>
+    </tr>
+    {% endfor %}
+    </table>
+  </td></tr>
+  </table>
+</td></tr>
+{% endif %}
+
+<!-- Newsletter Sections -->
+{% for section in sections %}
+{% if section.articles %}
+<tr><td style="padding:0 30px;">
+
+  <!-- Section Header -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;border-bottom:2px solid {{ section.color }};">
+  <tr>
+    <td style="padding:20px 0 8px 0;">
+      <span style="font-size:11px;font-weight:700;color:#ffffff;background-color:{{ section.color }};padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:0.8px;">{{ section.icon }} {{ section.name }}</span>
+      <span style="font-size:12px;color:#94a3b8;margin-left:8px;">{{ section.articles|length }} item{{ 's' if section.articles|length != 1 else '' }}</span>
+    </td>
+  </tr>
+  </table>
+
+  <!-- Articles -->
+  {% for article in section.articles %}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;padding-bottom:16px;{% if not loop.last %}border-bottom:1px solid #f1f5f9;{% endif %}">
+  <tr><td>
+    <!-- Severity Badge + Title -->
+    <div style="margin-bottom:6px;">
+      {% if article.severity == 'critical' %}
+      <span style="display:inline-block;font-size:10px;font-weight:700;color:#ffffff;background-color:#dc2626;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;vertical-align:middle;">CRITICAL</span>
+      {% elif article.severity == 'high' %}
+      <span style="display:inline-block;font-size:10px;font-weight:700;color:#ffffff;background-color:#ea580c;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;vertical-align:middle;">HIGH</span>
+      {% elif article.severity == 'medium' %}
+      <span style="display:inline-block;font-size:10px;font-weight:700;color:#ffffff;background-color:#ca8a04;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;vertical-align:middle;">MEDIUM</span>
+      {% elif article.severity == 'low' %}
+      <span style="display:inline-block;font-size:10px;font-weight:700;color:#ffffff;background-color:#2563eb;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px;vertical-align:middle;">LOW</span>
+      {% endif %}
+      <a href="{{ article.link }}" style="font-size:15px;font-weight:600;color:#0f172a;text-decoration:none;vertical-align:middle;margin-left:4px;">{{ article.title }}</a>
+    </div>
+
+    <!-- Source + Date -->
+    <div style="font-size:12px;color:#94a3b8;margin-bottom:6px;">
+      {{ article.source }} &middot; {{ article.published_short }}
+      {% if article.cves %}
+        {% for cve in article.cves %}
+        &nbsp;<span style="display:inline-block;font-size:10px;font-weight:600;color:#dc2626;background-color:#fef2f2;padding:1px 6px;border-radius:3px;font-family:Consolas,'Courier New',monospace;">{{ cve }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <!-- Summary -->
+    <div style="font-size:13px;line-height:1.6;color:#475569;">{{ article.summary }}</div>
+
+    <!-- Read More -->
+    <div style="margin-top:6px;">
+      <a href="{{ article.link }}" style="font-size:12px;color:#2563eb;text-decoration:none;font-weight:500;">Read full article &#8594;</a>
+    </div>
+  </td></tr>
+  </table>
+  {% endfor %}
+
+</td></tr>
+
+{% if not loop.last %}
+<!-- Section Divider -->
+<tr><td style="padding:0 30px;"><div style="border-top:1px solid #e5e7eb;"></div></td></tr>
+{% endif %}
+
+{% endif %}
+{% endfor %}
+
+<!-- Footer -->
+<tr><td style="padding:24px 30px;background-color:#f8fafc;border-top:1px solid #e5e7eb;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  <tr><td style="text-align:center;">
+    <div style="font-size:13px;color:#64748b;margin-bottom:8px;">
+      <strong style="color:#0f172a;">DailyCTI Brief</strong> -- Open-source cybersecurity intelligence
+    </div>
+    <div style="font-size:12px;color:#94a3b8;margin-bottom:8px;">
+      Curated from {{ source_count }} sources &middot; Powered by <a href="https://github.com/dailycti" style="color:#2563eb;text-decoration:none;">DailyCTI</a>
+    </div>
+    <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;">
+      All summaries are AI-generated abstractions. Original content belongs to the respective sources.
+      <br>Always verify critical intelligence with primary sources before taking action.
+    </div>
+    <div style="font-size:12px;margin-top:12px;">
+      <a href="#" style="color:#94a3b8;text-decoration:underline;">Unsubscribe</a>
+      &nbsp;&middot;&nbsp;
+      <a href="#" style="color:#94a3b8;text-decoration:underline;">View in browser</a>
+      &nbsp;&middot;&nbsp;
+      <a href="#" style="color:#94a3b8;text-decoration:underline;">Manage preferences</a>
+    </div>
+  </td></tr>
+  </table>
+</td></tr>
+
+</table>
+<!-- /Main Container -->
+
+</td></tr>
+</table>
+<!-- /Wrapper -->
+
+</body>
+</html>
