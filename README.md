@@ -3,7 +3,9 @@
 **Know what happened in cyber last night. 2 minutes. Every morning.**
 
 <p align="center">
-  <img src="src/images/notebooklm_presentation_cute.png" alt="DailyCTI -- Cyber Intel by Morning Coffee" width="700">
+</p>
+<p align="center"><img width="2752" height="1536" alt="notebookm_presentation_archi" src="https://github.com/user-attachments/assets/2cca17cc-97c4-4298-82a4-a2c009b08ece" />
+<p align="center"><img width="668" height="936" alt="image" src="https://github.com/user-attachments/assets/d7734688-9b1a-45dd-919e-adc27f90e287" />
 </p>
 
 ---
